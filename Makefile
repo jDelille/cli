@@ -16,12 +16,23 @@ TARGET = cli
 # Default target
 all: $(TARGET)
 
-# Compile all sources into one executable
+# Compile CLI
 $(TARGET): $(SRC)
 	$(CC) $(CFLAGS) -o $(TARGET) $(SRC) $(LDFLAGS)
 
+# Test files
+TEST_SRC = $(shell find tests -name '*.c')
+TEST_TARGET = run_tests
+
+# Compile and run tests
+$(TEST_TARGET): $(TEST_SRC) $(SRC)
+	$(CC) $(CFLAGS) $(TEST_SRC) $(SRC) -o $(TEST_TARGET) $(LDFLAGS)
+
+test: $(TEST_TARGET)
+	./$(TEST_TARGET)
+
 # Clean build
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET) $(TEST_TARGET)
 
-.PHONY: all clean
+.PHONY: all clean test
