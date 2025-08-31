@@ -25,8 +25,9 @@ TEST_SRC = $(shell find tests -name '*.c')
 TEST_TARGET = run_tests
 
 # Compile and run tests
-$(TEST_TARGET): $(TEST_SRC) $(SRC)
-	$(CC) $(CFLAGS) $(TEST_SRC) $(SRC) -o $(TEST_TARGET) $(LDFLAGS)
+# Note: do NOT include src/main.c here to avoid multiple main definitions
+$(TEST_TARGET): $(TEST_SRC) src/commands.c
+	$(CC) $(CFLAGS) $(TEST_SRC) src/commands.c -o $(TEST_TARGET) $(LDFLAGS)
 
 test: $(TEST_TARGET)
 	./$(TEST_TARGET)

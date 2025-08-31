@@ -9,6 +9,7 @@
 
 Command commands[] = {
     {"hello", hello_world, "Hello World"},
+    {"mkdir", cmd_mkdir, "Create new folder"},
     {NULL, NULL, NULL},
 };
 

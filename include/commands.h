@@ -2,5 +2,6 @@
 #define COMMANDS_H
 
 void hello_world();
+void cmd_mkdir();
 
 #endif
