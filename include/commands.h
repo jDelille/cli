@@ -6,5 +6,6 @@ void cmd_rmdir();
 void cmd_touch();
 void cmd_cd();
 void cmd_clear();
+void cmd_exit();
 
 #endif

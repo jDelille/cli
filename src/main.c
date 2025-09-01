@@ -13,6 +13,7 @@ Command commands[] = {
     {"touch", cmd_touch, "Create a file"},
     {"cd", cmd_cd, "Change directory"},
     {"clear", cmd_clear, "Clear the screen"},
+    {"exit", cmd_exit, "Exit the terminal"},
     {NULL, NULL, NULL},
 };
 

@@ -91,3 +91,9 @@ void cmd_clear(char *args) {
     printf("\033[2J\033[H");
     fflush(stdout);
 }
+
+void cmd_exit(char *args) {
+    (void)args;
+    printf("Exiting...\n");
+    exit(EXIT_SUCCESS);
+}
