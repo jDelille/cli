@@ -14,6 +14,7 @@ Command commands[] = {
     {"cd", cmd_cd, "Change directory"},
     {"clear", cmd_clear, "Clear the screen"},
     {"exit", cmd_exit, "Exit the terminal"},
+    {"rm", cmd_rm, "Delete a file"},
     {NULL, NULL, NULL},
 };
 

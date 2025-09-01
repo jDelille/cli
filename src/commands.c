@@ -97,3 +97,16 @@ void cmd_exit(char *args) {
     printf("Exiting...\n");
     exit(EXIT_SUCCESS);
 }
+
+void cmd_rm(char *args) {
+    if(!args || args[0] == '\0') {
+        printf("Usage: rm <filename>\n");
+        return;
+    }
+
+    if (unlink(args) == 0) {
+        printf("File '%s' deleted successfully.\n", args);
+    } else {
+        printf("Error deleting file '%s': %s\n", args, strerror(errno));
+    }
+}

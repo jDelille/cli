@@ -3,6 +3,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <errno.h>
+#include <fcntl.h>
 
 #include "../include/commands.h"
 
@@ -106,10 +107,37 @@ void test_touch()
     unlink(filename);
 }
 
+void test_rm() {
+    const char *file = "test_file.txt";
+
+     int fd = open(file, O_CREAT | O_WRONLY, 0644);
+    if (fd >= 0) close(fd);
+
+    if (!file_exists(file)) {
+        printf(RED "Failed to create file for test.\n" RESET);
+        return;
+    }
+
+    FILE *orig = stdout;
+    stdout = fopen("/dev/null", "w");
+
+    cmd_rm((char *)file);  
+
+    fclose(stdout);
+    stdout = orig;
+
+    if (!file_exists(file)) {
+        printf(GREEN "test_rm passed!\n" RESET);
+    } else {
+        printf(RED "test_rm failed!\n" RESET);
+    }
+}
+
 int main(void)
 {
     test_mkdir();
     test_rmdir();
     test_touch();
+    test_rm();
     return 0;
 }
