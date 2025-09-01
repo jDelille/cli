@@ -8,10 +8,10 @@
 #define MAX_INPUT 256
 
 Command commands[] = {
-    {"hello", hello_world, "Hello World"},
     {"mkdir", cmd_mkdir, "Create new folder"},
     {"rmdir", cmd_rmdir, "Delete a folder"},
     {"touch", cmd_touch, "Create a file"},
+    {"cd", cmd_cd, "Change directory"},
     {NULL, NULL, NULL},
 };
 

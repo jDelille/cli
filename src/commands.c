@@ -12,10 +12,6 @@
 
 #include "../include/commands.h"
 
-void hello_world()
-{
-    printf("Hello world!\n");
-}
 
 void cmd_mkdir(char *args)
 {
@@ -69,5 +65,23 @@ void cmd_touch(char *args)
     else
     {
         printf("Error creating file '%s': %s\n", args, strerror(errno));
+    }
+}
+
+void cmd_cd(char *args)
+{
+    if (!args || args[0] == '\0')
+    {
+        printf("Usage: cd <directory>\n");
+        return;
+    }
+
+    if (chdir(args) == 0)
+    {
+        printf("Changed directory to '%s'\n", args);
+    }
+    else
+    {
+        printf("Error changing directory to '%s': %s\n", args, strerror(errno));
     }
 }
