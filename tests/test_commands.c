@@ -10,22 +10,26 @@
 #define GREEN "\x1b[32m"
 #define RESET "\x1b[0m"
 
-int folder_exists(const char *name) {
+int folder_exists(const char *name)
+{
     struct stat st;
     return stat(name, &st) == 0 && S_ISDIR(st.st_mode);
 }
 
-void suppress_stdout_start(FILE **orig) {
+void suppress_stdout_start(FILE **orig)
+{
     *orig = stdout;
     stdout = fopen("/dev/null", "w");
 }
 
-void suppress_stdout_end(FILE *orig) {
+void suppress_stdout_end(FILE *orig)
+{
     fclose(stdout);
     stdout = orig;
 }
 
-void test_mkdir() {
+void test_mkdir()
+{
     const char *folder = "test_folder";
 
     if (folder_exists(folder))
@@ -36,16 +40,20 @@ void test_mkdir() {
     cmd_mkdir((char *)folder);
     suppress_stdout_end(orig);
 
-    if (folder_exists(folder)) {
+    if (folder_exists(folder))
+    {
         printf(GREEN "test_mkdir passed!\n" RESET);
-    } else {
+    }
+    else
+    {
         printf(RED "test_mkdir failed!\n" RESET);
     }
 
     rmdir(folder);
 }
 
-void test_rmdir() {
+void test_rmdir()
+{
     const char *folder = "test_rmdir";
 
     if (folder_exists(folder))
@@ -58,15 +66,50 @@ void test_rmdir() {
     cmd_rmdir((char *)folder);
     suppress_stdout_end(orig);
 
-    if (!folder_exists(folder)) {
+    if (!folder_exists(folder))
+    {
         printf(GREEN "test_rmdir passed!\n" RESET);
-    } else {
+    }
+    else
+    {
         printf(RED "test_rmdir failed!\n" RESET);
     }
 }
 
-int main(void) {
+int file_exists(const char *name)
+{
+    struct stat st;
+    return stat(name, &st) == 0 && S_ISREG(st.st_mode);
+}
+
+void test_touch()
+{
+    const char *filename = "test_file.txt";
+
+    if (file_exists(filename))
+        unlink(filename);
+
+    FILE *orig;
+    suppress_stdout_start(&orig);
+    cmd_touch((char *)filename);
+    suppress_stdout_end(orig);
+
+    if (file_exists(filename))
+    {
+        printf(GREEN "test_touch passed!\n" RESET);
+    }
+    else
+    {
+        printf(RED "test_touch failed!\n" RESET);
+    }
+
+    unlink(filename);
+}
+
+int main(void)
+{
     test_mkdir();
     test_rmdir();
+    test_touch();
     return 0;
 }

@@ -1,9 +1,14 @@
+/**
+ * Docs for commands: man7.org
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <errno.h>
 #include <string.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 #include "../include/commands.h"
 
@@ -43,5 +48,26 @@ void cmd_rmdir(char *args)
     else
     {
         printf("Error deleting folder '%s': %s\n", args, strerror(errno));
+    }
+}
+
+void cmd_touch(char *args)
+{
+    if (!args || args[0] == '\0')
+    {
+        printf("Usage: touch <filename>\n");
+        return;
+    }
+
+    int fd = open(args, O_CREAT | O_WRONLY, 0644);
+
+    if (fd >= 0)
+    {
+        printf("File '%s' created successfully.\n", args);
+        close(fd);
+    }
+    else
+    {
+        printf("Error creating file '%s': %s\n", args, strerror(errno));
     }
 }
