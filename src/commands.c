@@ -85,3 +85,9 @@ void cmd_cd(char *args)
         printf("Error changing directory to '%s': %s\n", args, strerror(errno));
     }
 }
+
+void cmd_clear(char *args) {
+    (void)args;
+    printf("\033[2J\033[H");
+    fflush(stdout);
+}

@@ -12,6 +12,7 @@ Command commands[] = {
     {"rmdir", cmd_rmdir, "Delete a folder"},
     {"touch", cmd_touch, "Create a file"},
     {"cd", cmd_cd, "Change directory"},
+    {"clear", cmd_clear, "Clear the screen"},
     {NULL, NULL, NULL},
 };
 
