@@ -76,14 +76,7 @@ void cmd_cd(char *args)
         return;
     }
 
-    if (chdir(args) == 0)
-    {
-        printf("Changed directory to '%s'\n", args);
-    }
-    else
-    {
-        printf("Error changing directory to '%s': %s\n", args, strerror(errno));
-    }
+   chdir(args);
 }
 
 void cmd_clear(char *args) {

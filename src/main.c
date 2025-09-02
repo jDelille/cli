@@ -4,6 +4,7 @@
 
 #include "../include/structs.h"
 #include "../include/commands.h"
+#include "../include/utils/prompt.h"
 
 #define MAX_INPUT 256
 
@@ -24,7 +25,7 @@ int main(void)
 
     while (1)
     {
-        printf("> ");
+        display_prompt();
         fgets(input, MAX_INPUT, stdin);
         input[strcspn(input, "\n")] = 0; // remove trailing newline
 

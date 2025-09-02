@@ -7,33 +7,36 @@ CFLAGS = -Wall -Wextra -std=c11
 # Linker flags
 LDFLAGS = -lncurses
 
-# Source files
-SRC = $(wildcard src/*.c)
+# Source files (recursive)
+SRC = $(shell find src -name '*.c')
+
+# Object files
+OBJ = $(SRC:.c=.o)
 
 # Executable
 TARGET = cli
 
-# Default target
 all: $(TARGET)
 
-# Compile CLI
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRC) $(LDFLAGS)
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $(OBJ) $(LDFLAGS)
+
+# Pattern rule to compile .c -> .o
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Test files
 TEST_SRC = $(shell find tests -name '*.c')
+TEST_OBJ = $(TEST_SRC:.c=.o)
 TEST_TARGET = run_tests
 
-# Compile and run tests
-# Note: do NOT include src/main.c here to avoid multiple main definitions
-$(TEST_TARGET): $(TEST_SRC) src/commands.c
-	$(CC) $(CFLAGS) $(TEST_SRC) src/commands.c -o $(TEST_TARGET) $(LDFLAGS)
+$(TEST_TARGET): $(TEST_OBJ) src/commands.o
+	$(CC) $(CFLAGS) -o $@ $(TEST_OBJ) src/commands.o $(LDFLAGS)
 
 test: $(TEST_TARGET)
 	./$(TEST_TARGET)
 
-# Clean build
 clean:
-	rm -f $(TARGET) $(TEST_TARGET)
+	rm -f $(TARGET) $(TEST_TARGET) $(OBJ) $(TEST_OBJ)
 
 .PHONY: all clean test
