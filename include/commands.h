@@ -8,5 +8,6 @@ void cmd_cd();
 void cmd_clear();
 void cmd_exit();
 void cmd_rm();
+void cmd_ls();
 
 #endif
