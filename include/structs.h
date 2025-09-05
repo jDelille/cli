@@ -5,6 +5,7 @@ typedef struct {
     char *name;
     void (*func)(char *args);
     char *desc;
+    char *usage;
 } Command;
 
 #endif

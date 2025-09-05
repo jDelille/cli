@@ -9,15 +9,16 @@
 #define MAX_INPUT 256
 
 Command commands[] = {
-    {"mkdir", cmd_mkdir, "Create new folder"},
-    {"rmdir", cmd_rmdir, "Delete a folder"},
-    {"touch", cmd_touch, "Create a file"},
-    {"cd", cmd_cd, "Change directory"},
-    {"clear", cmd_clear, "Clear the screen"},
-    {"exit", cmd_exit, "Exit the terminal"},
-    {"rm", cmd_rm, "Delete a file"},
-    {"ls", cmd_ls, "View files"},
-    {NULL, NULL, NULL},
+    {"mkdir", cmd_mkdir, "Create new folder", "mkdir <foldername>"},
+    {"rmdir", cmd_rmdir, "Delete a folder", "rmdir <foldername>"},
+    {"touch", cmd_touch, "Create a file", "touch <filename>"},
+    {"cd", cmd_cd, "Change directory", "cd <directory>"},
+    {"clear", cmd_clear, "Clear the screen", "clear"},
+    {"exit", cmd_exit, "Exit the terminal", "exit"},
+    {"rm", cmd_rm, "Delete a file", "rm <filename>"},
+    {"ls", cmd_ls, "View files", "ls"},
+    {"help", cmd_help, "View commands", "help"},
+    {NULL, NULL, NULL, NULL},
 };
 
 int main(void)

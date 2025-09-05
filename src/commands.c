@@ -13,6 +13,7 @@
 #include <dirent.h>
 
 #include "../include/commands.h"
+#include "../include/structs.h"
 
 #define BLUE "\x1b[34m"
 #define FILE_COLOR "\x1b[38;5;40m"
@@ -151,4 +152,15 @@ void cmd_ls(char *args)
     }
     closedir(d);
     printf("\n");
+}
+
+void cmd_help(char *args)
+{
+    (void)args; // unused
+    printf("Available commands:\n");
+    for (int i = 0; commands[i].name != NULL; i++)
+    {
+        printf("  %-6s - %-30s Usage: %s\n",
+               commands[i].name, commands[i].desc, commands[i].usage);
+    }
 }
