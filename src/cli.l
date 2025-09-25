@@ -15,16 +15,19 @@ void yyerror(const char *s);
 %%
 
 "create"      { return CREATE; }
-"project"     { return PROJECT; }
 "file"        { return FILE_KW; }
 "delete"      { return DELETE; }
 "recover"     { return RECOVER; }
 "empty"       { return EMPTY; }
 "trash"       { return TRASH; }
 "clear"       { return CLEAR; }
-"args"        { return ARGS; }
+"templates"   { return TEMPLATES; }
+"new"         { return NEW; }
+"list"        { return LIST; }
+"ctmpl"       { return CTMPL; }
 
 [a-zA-Z_][a-zA-Z0-9_.]*  { yylval.string = strdup(yytext); return IDENTIFIER; }
+
 
 [ \t\r]+      { /* skip whitespace */ }
 

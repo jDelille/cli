@@ -1,5 +1,5 @@
-build/cli: src/main.c build/lex.yy.c build/cli.tab.c src/commands/commands.c
-	gcc -I build -I src -Wall -g src/main.c build/lex.yy.c build/cli.tab.c src/commands/commands.c -o build/cli -lfl
+build/cli: src/main.c build/lex.yy.c build/cli.tab.c src/commands/commands.c src/commands/template/template.c
+	gcc -I build -I src -Wall -g src/main.c build/lex.yy.c build/cli.tab.c src/commands/commands.c src/commands/template/template.c -o build/cli -lfl -lreadline
 
 build/lex.yy.c: src/cli.l build/cli.tab.h
 	flex -o build/lex.yy.c src/cli.l

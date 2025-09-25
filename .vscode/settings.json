@@ -1,7 +1,17 @@
 {
-    "files.associations": {
-        "string.h": "c",
-        "unistd.h": "c",
-        "commands.h": "c"
-    }
+  "files.associations": {
+    "string.h": "c",
+    "unistd.h": "c",
+    "commands.h": "c",
+    "dirent.h": "c",
+    "stat.h": "c",
+    "stdlib.h": "c",
+    "stdbool.h": "c",
+    "readline.h": "c",
+    "template.h": "c"
+  },
+  "[c]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "C_Cpp.clang_format_style": "Google"
 }

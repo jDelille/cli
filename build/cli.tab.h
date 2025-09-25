@@ -55,16 +55,18 @@ extern int yydebug;
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
     CREATE = 258,                  /* CREATE  */
-    PROJECT = 259,                 /* PROJECT  */
+    LIST = 259,                    /* LIST  */
     FILE_KW = 260,                 /* FILE_KW  */
     DELETE = 261,                  /* DELETE  */
     RECOVER = 262,                 /* RECOVER  */
     EMPTY = 263,                   /* EMPTY  */
     TRASH = 264,                   /* TRASH  */
     CLEAR = 265,                   /* CLEAR  */
-    ARGS = 266,                    /* ARGS  */
-    IDENTIFIER = 267,              /* IDENTIFIER  */
-    NEWLINE = 268                  /* NEWLINE  */
+    NEW = 266,                     /* NEW  */
+    TEMPLATES = 267,               /* TEMPLATES  */
+    CTMPL = 268,                   /* CTMPL  */
+    IDENTIFIER = 269,              /* IDENTIFIER  */
+    NEWLINE = 270                  /* NEWLINE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -73,11 +75,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 11 "src/cli.y"
+#line 12 "src/cli.y"
 
     char *string;
 
-#line 81 "build/cli.tab.h"
+#line 83 "build/cli.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
